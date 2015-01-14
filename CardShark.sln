@@ -1,0 +1,52 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CardShark.PCShark", "CardShark.PCShark\CardShark.PCShark.csproj", "{55EE95A8-6FF5-4D72-8EA1-8A1F78B57E8B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TreeJSON", "TreeJSON\TreeJSON.csproj", "{B854FF54-8253-4E24-997E-240C84B55091}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsoleShark", "ConsoleShark\ConsoleShark.csproj", "{E6FC5798-F080-45FB-880A-830FEF8C3386}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CardShark.Tests", "CardShark.Tests\CardShark.Tests.csproj", "{4BC0A7BA-2EFC-42BF-8B3C-061667E59152}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{E92DFC83-58D9-4947-BBF0-225784ED8E0C}"
+	ProjectSection(SolutionItems) = preProject
+		FeaturesTasksGoals.txt = FeaturesTasksGoals.txt
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UsableDataFramework", "UsableDataFramework\UsableDataFramework.csproj", "{66AC360C-F9E0-4678-A68E-C756577AEBAE}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{55EE95A8-6FF5-4D72-8EA1-8A1F78B57E8B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{55EE95A8-6FF5-4D72-8EA1-8A1F78B57E8B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{55EE95A8-6FF5-4D72-8EA1-8A1F78B57E8B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{55EE95A8-6FF5-4D72-8EA1-8A1F78B57E8B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B854FF54-8253-4E24-997E-240C84B55091}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B854FF54-8253-4E24-997E-240C84B55091}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B854FF54-8253-4E24-997E-240C84B55091}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B854FF54-8253-4E24-997E-240C84B55091}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E6FC5798-F080-45FB-880A-830FEF8C3386}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E6FC5798-F080-45FB-880A-830FEF8C3386}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E6FC5798-F080-45FB-880A-830FEF8C3386}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E6FC5798-F080-45FB-880A-830FEF8C3386}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4BC0A7BA-2EFC-42BF-8B3C-061667E59152}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4BC0A7BA-2EFC-42BF-8B3C-061667E59152}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4BC0A7BA-2EFC-42BF-8B3C-061667E59152}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4BC0A7BA-2EFC-42BF-8B3C-061667E59152}.Release|Any CPU.Build.0 = Release|Any CPU
+		{66AC360C-F9E0-4678-A68E-C756577AEBAE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{66AC360C-F9E0-4678-A68E-C756577AEBAE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{66AC360C-F9E0-4678-A68E-C756577AEBAE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{66AC360C-F9E0-4678-A68E-C756577AEBAE}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		EnterpriseLibraryConfigurationToolBinariesPathV6 = packages\EnterpriseLibrary.Common.6.0.1304.0\lib\NET45;packages\EnterpriseLibrary.Logging.6.0.1304.0\lib\NET45
+	EndGlobalSection
+EndGlobal

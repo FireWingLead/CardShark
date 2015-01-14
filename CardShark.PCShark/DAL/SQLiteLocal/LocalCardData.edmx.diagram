@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="e52b3810ca4b43f6a4d53412649b71db" Name="Diagram1">
+        <EntityTypeShape EntityType="LocalCardDataModel.Card" Width="1.5" PointX="3" PointY="2.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="LocalCardDataModel.CardVariation" Width="1.5" PointX="5.625" PointY="1.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="LocalCardDataModel.ManaSymbol" Width="1.5" PointX="0.625" PointY="7.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="LocalCardDataModel.ManaSymbolSet" Width="1.5" PointX="0.625" PointY="5.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="LocalCardDataModel.Set" Width="1.5" PointX="0.625" PointY="1.375" IsExpanded="true" />
+        <AssociationConnector Association="LocalCardDataModel.FK_CardCardVariation" ManuallyRouted="false" />
+        <AssociationConnector Association="LocalCardDataModel.FK_SetCardVariation" ManuallyRouted="false" />
+        <AssociationConnector Association="LocalCardDataModel.FK_ManaSymbolSetManaSymbol" ManuallyRouted="false" />
+        <AssociationConnector Association="LocalCardDataModel.FK_ManaSymbolSetSet" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

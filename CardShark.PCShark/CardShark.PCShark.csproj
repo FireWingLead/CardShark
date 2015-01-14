@@ -1,0 +1,377 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{55EE95A8-6FF5-4D72-8EA1-8A1F78B57E8B}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>CardShark.PCShark</RootNamespace>
+    <AssemblyName>CardShark.PCShark</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <WarningLevel>4</WarningLevel>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Accessibility" />
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.1\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\EntityFramework.6.1.1\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.EnterpriseLibrary.Common">
+      <HintPath>..\packages\EnterpriseLibrary.Common.6.0.1304.0\lib\NET45\Microsoft.Practices.EnterpriseLibrary.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.EnterpriseLibrary.Logging">
+      <HintPath>..\packages\EnterpriseLibrary.Logging.6.0.1304.0\lib\NET45\Microsoft.Practices.EnterpriseLibrary.Logging.dll</HintPath>
+    </Reference>
+    <Reference Include="PresentationUI, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
+    <Reference Include="ReachFramework" />
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Data.Entity" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Printing" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Xaml">
+      <RequiredTargetFramework>4.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="UIAutomationProvider" />
+    <Reference Include="UIAutomationTypes" />
+    <Reference Include="WindowsBase" />
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+    <Reference Include="WpfAnimatedGif">
+      <HintPath>..\packages\WpfAnimatedGif.1.4.9\lib\net\WpfAnimatedGif.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <ApplicationDefinition Include="App.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </ApplicationDefinition>
+    <Compile Include="DAL\MTGAPI_Remote\Exceptions.cs" />
+    <Compile Include="DAL\MTGAPI_Remote\PropertyBinding.cs" />
+    <Compile Include="DAL\MTGAPI_Remote\SetPropertyBinding.cs" />
+    <Compile Include="DAL\MTGImage_Remote\RequestManager.cs" />
+    <Compile Include="DAL\MTGImage_Remote\URI_Manager.cs" />
+    <Compile Include="DAL\SQLiteLocal\Card.cs">
+      <DependentUpon>LocalCardData.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DAL\SQLiteLocal\CardType.cs" />
+    <Compile Include="DAL\SQLiteLocal\CardVariation.cs">
+      <DependentUpon>LocalCardData.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DAL\SQLiteLocal\EnumExtensions.cs" />
+    <Compile Include="DAL\SQLiteLocal\LocalCardData.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>LocalCardData.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DAL\SQLiteLocal\LocalCardData.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>LocalCardData.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DAL\SQLiteLocal\LocalCardData.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>LocalCardData.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="DAL\SQLiteLocal\LocalDataProvider.cs" />
+    <Compile Include="DAL\SQLiteLocal\ManaColors.cs" />
+    <Compile Include="DAL\SQLiteLocal\ManaCost.cs" />
+    <Compile Include="DAL\SQLiteLocal\ManaCostItem.cs" />
+    <Compile Include="DAL\SQLiteLocal\ManaCostItemDisplayModes.cs" />
+    <Compile Include="DAL\SQLiteLocal\ManaSymbol.cs">
+      <DependentUpon>LocalCardData.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DAL\SQLiteLocal\ManaSymbolSet.cs">
+      <DependentUpon>LocalCardData.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DAL\SQLiteLocal\Set.cs">
+      <DependentUpon>LocalCardData.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DAL\SQLiteLocal\_Card.cs" />
+    <Compile Include="DAL\SQLiteLocal\_CardVariation.cs" />
+    <Compile Include="DAL\SQLiteLocal\_ManaSymbol.cs" />
+    <Compile Include="DAL\SQLiteLocal\_ManaSymbolSet.cs" />
+    <Compile Include="Extensions\ImagingExtensions.cs" />
+    <Compile Include="GifImage.cs" />
+    <Compile Include="ManaCostLabel.xaml.cs">
+      <DependentUpon>ManaCostLabel.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ManaCostTextBlock.cs" />
+    <Compile Include="MethodThreader.cs" />
+    <Compile Include="SetImporterDialog.xaml.cs">
+      <DependentUpon>SetImporterDialog.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="WaitAnimator.xaml.cs">
+      <DependentUpon>WaitAnimator.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="XmlWriterTraceListener2.cs" />
+    <Page Include="MainWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Compile Include="App.xaml.cs">
+      <DependentUpon>App.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="DAL\MTGAPI_Remote\RequestManager.cs" />
+    <Compile Include="DAL\MTGAPI_Remote\SetAdapter.cs" />
+    <Compile Include="DAL\MTGAPI_Remote\URI_Manager.cs" />
+    <Compile Include="DAL\SQLiteLocal\_Set.cs" />
+    <Compile Include="DAL\XmlLocal\MemberSerializionSpecifications.cs" />
+    <Compile Include="DAL\XmlLocal\ModelWriter.cs" />
+    <Compile Include="Extensions\ListExtensions.cs" />
+    <Compile Include="Logger.cs" />
+    <Compile Include="MainWindow.xaml.cs">
+      <DependentUpon>MainWindow.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Page Include="ManaCostLabel.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="SetImporterDialog.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="WaitAnimator.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Properties\AssemblyInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <None Include="DAL\SQLiteLocal\LocalCardData.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>LocalCardData.edmx</DependentUpon>
+      <LastGenOutput>LocalCardData.Context.cs</LastGenOutput>
+    </None>
+    <None Include="DAL\SQLiteLocal\LocalCardData.db">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <EntityDeploy Include="DAL\SQLiteLocal\LocalCardData.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>LocalCardData.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="DAL\SQLiteLocal\LocalCardData.edmx.diagram">
+      <DependentUpon>LocalCardData.edmx</DependentUpon>
+    </None>
+    <None Include="DAL\SQLiteLocal\LocalCardData.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>LocalCardData.edmx</DependentUpon>
+      <LastGenOutput>LocalCardData.cs</LastGenOutput>
+    </None>
+    <None Include="packages.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <AppDesigner Include="Properties\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config">
+      <SubType>Designer</SubType>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="DAL\SQLiteLocal\LocalCardData.edmx.sql" />
+    <Content Include="DAL\SQLiteLocal\LocalCardData.mdf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="DAL\SQLiteLocal\LocalCardData.sdf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="DAL\SQLiteLocal\LocalCardData_log.ldf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <DependentUpon>LocalCardData.mdf</DependentUpon>
+    </Content>
+    <Resource Include="InterfaceGraphics\DefManaSymbols\0-64.png" />
+    <Resource Include="InterfaceGraphics\DefManaSymbols\1-64.png" />
+    <Resource Include="InterfaceGraphics\DefManaSymbols\10-64.png" />
+    <Resource Include="InterfaceGraphics\DefManaSymbols\100-64.png" />
+    <Resource Include="InterfaceGraphics\DefManaSymbols\1000000-64.png" />
+    <Resource Include="InterfaceGraphics\DefManaSymbols\11-64.png" />
+    <Resource Include="InterfaceGraphics\DefManaSymbols\12-64.png" />
+    <Resource Include="InterfaceGraphics\DefManaSymbols\13-64.png" />
+    <Resource Include="InterfaceGraphics\DefManaSymbols\14-64.png" />
+    <Resource Include="InterfaceGraphics\DefManaSymbols\15-64.png" />
+    <Resource Include="InterfaceGraphics\DefManaSymbols\16-64.png" />
+    <Resource Include="InterfaceGraphics\DefManaSymbols\17-64.png" />
+    <Resource Include="InterfaceGraphics\DefManaSymbols\18-64.png" />
+    <Resource Include="InterfaceGraphics\DefManaSymbols\19-64.png" />
+    <Resource Include="InterfaceGraphics\DefManaSymbols\2-64.png" />
+    <Resource Include="InterfaceGraphics\DefManaSymbols\20-64.png" />
+    <Resource Include="InterfaceGraphics\DefManaSymbols\2_B-64.png" />
+    <Resource Include="InterfaceGraphics\DefManaSymbols\2_G-64.png" />
+    <Resource Include="InterfaceGraphics\DefManaSymbols\2_R-64.png" />
+    <Resource Include="InterfaceGraphics\DefManaSymbols\2_U-64.png" />
+    <Resource Include="InterfaceGraphics\DefManaSymbols\2_W-64.png" />
+    <Resource Include="InterfaceGraphics\DefManaSymbols\3-64.png" />
+    <Resource Include="InterfaceGraphics\DefManaSymbols\4-64.png" />
+    <Resource Include="InterfaceGraphics\DefManaSymbols\5-64.png" />
+    <Resource Include="InterfaceGraphics\DefManaSymbols\6-64.png" />
+    <Resource Include="InterfaceGraphics\DefManaSymbols\7-64.png" />
+    <Resource Include="InterfaceGraphics\DefManaSymbols\8-64.png" />
+    <Resource Include="InterfaceGraphics\DefManaSymbols\9-64.png" />
+    <Resource Include="InterfaceGraphics\DefManaSymbols\B-64.png" />
+    <Resource Include="InterfaceGraphics\DefManaSymbols\B_G-64.png" />
+    <Resource Include="InterfaceGraphics\DefManaSymbols\B_P-64.png" />
+    <Resource Include="InterfaceGraphics\DefManaSymbols\B_R-64.png" />
+    <Resource Include="InterfaceGraphics\DefManaSymbols\G-64.png" />
+    <Resource Include="InterfaceGraphics\DefManaSymbols\G_P-64.png" />
+    <Resource Include="InterfaceGraphics\DefManaSymbols\H-64.png" />
+    <Resource Include="InterfaceGraphics\DefManaSymbols\H_B-64.png" />
+    <Resource Include="InterfaceGraphics\DefManaSymbols\H_G-64.png" />
+    <Resource Include="InterfaceGraphics\DefManaSymbols\H_R-64.png" />
+    <Resource Include="InterfaceGraphics\DefManaSymbols\H_U-64.png" />
+    <Resource Include="InterfaceGraphics\DefManaSymbols\H_W-64.png" />
+    <Resource Include="InterfaceGraphics\DefManaSymbols\P-64.png" />
+    <Resource Include="InterfaceGraphics\DefManaSymbols\R-64.png" />
+    <Resource Include="InterfaceGraphics\DefManaSymbols\R_G-64.png" />
+    <Resource Include="InterfaceGraphics\DefManaSymbols\R_P-64.png" />
+    <Resource Include="InterfaceGraphics\DefManaSymbols\S-64.png" />
+    <Resource Include="InterfaceGraphics\DefManaSymbols\U-64.png" />
+    <Resource Include="InterfaceGraphics\DefManaSymbols\U_B-64.png" />
+    <Resource Include="InterfaceGraphics\DefManaSymbols\U_G-64.png" />
+    <Resource Include="InterfaceGraphics\DefManaSymbols\U_P-64.png" />
+    <Resource Include="InterfaceGraphics\DefManaSymbols\U_R-64.png" />
+    <Resource Include="InterfaceGraphics\DefManaSymbols\W-64.png" />
+    <Resource Include="InterfaceGraphics\DefManaSymbols\W_B-64.png" />
+    <Resource Include="InterfaceGraphics\DefManaSymbols\W_G-64.png" />
+    <Resource Include="InterfaceGraphics\DefManaSymbols\W_P-64.png" />
+    <Resource Include="InterfaceGraphics\DefManaSymbols\W_R-64.png" />
+    <Resource Include="InterfaceGraphics\DefManaSymbols\W_U-64.png" />
+    <Resource Include="InterfaceGraphics\DefManaSymbols\X-64.png" />
+    <Resource Include="InterfaceGraphics\DefManaSymbols\Y-64.png" />
+    <Resource Include="InterfaceGraphics\DefManaSymbols\Z-64.png" />
+    <Resource Include="InterfaceGraphics\DefManaSymbols\∞-64.png" />
+    <Resource Include="InterfaceGraphics\DefManaSymbols\NotSupported.png" />
+    <Resource Include="InterfaceGraphics\MagnifyingGlass.png" />
+    <Resource Include="InterfaceGraphics\Test\Afterburner.png" />
+    <Resource Include="InterfaceGraphics\Test\BlankFF.jpg" />
+    <Resource Include="InterfaceGraphics\XIcon.png" />
+    <Content Include="LocalCardData.mdf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="LocalCardData_log.ldf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <DependentUpon>LocalCardData.mdf</DependentUpon>
+    </Content>
+    <Resource Include="InterfaceGraphics\Wait.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include=".NETFramework,Version=v4.5">
+      <Visible>False</Visible>
+      <ProductName>Microsoft .NET Framework 4.5 %28x86 and x64%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1 Client Profile</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.SQL.Server.Compact.4.0">
+      <Visible>False</Visible>
+      <ProductName>SQL Server Compact 4.0 SP1</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\TreeJSON\TreeJSON.csproj">
+      <Project>{b854ff54-8253-4e24-997e-240c84b55091}</Project>
+      <Name>TreeJSON</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="ProviderInterfaces\" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PostBuildEvent>
+    </PostBuildEvent>
+  </PropertyGroup>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

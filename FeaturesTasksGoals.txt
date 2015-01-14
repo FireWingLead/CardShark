@@ -1,0 +1,11 @@
+Keep a local library of official and custom cards.
+	Keep collections of physically owned cards.
+	Download official cards from the web.
+	Import custom cards from text files using custom algorithms.
+	Export cards and sets to custom text formats.
+	Create and Save custom cards to libary.
+	Create, Save, and Load decks made with cards from library.
+
+Play games with decks.
+	Create, Save and Load games.
+	Allow remote players to connect and join and play.

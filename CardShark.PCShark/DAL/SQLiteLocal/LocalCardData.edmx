@@ -1,0 +1,382 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="LocalCardDataModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityContainer Name="LocalCardDataModelStoreContainer">
+          <EntitySet Name="Cards" EntityType="LocalCardDataModel.Store.Cards" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="CardVariations" EntityType="LocalCardDataModel.Store.CardVariations" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="ManaSymbols" EntityType="LocalCardDataModel.Store.ManaSymbols" store:Type="Tables" store:Schema="dbo" store:Name="ManaSymbols">
+            <DefiningQuery>SELECT 
+      [ManaSymbols].[Code] AS [Code], 
+      [ManaSymbols].[ManaSymbolSetId] AS [ManaSymbolSetId], 
+      [ManaSymbols].[Image] AS [Image]
+      FROM [dbo].[ManaSymbols] AS [ManaSymbols]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="ManaSymbolSets" EntityType="LocalCardDataModel.Store.ManaSymbolSets" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Sets" EntityType="LocalCardDataModel.Store.Sets" store:Type="Tables" Schema="dbo" />
+          <AssociationSet Name="FK_CardCardVariation" Association="LocalCardDataModel.Store.FK_CardCardVariation">
+            <End Role="Cards" EntitySet="Cards" />
+            <End Role="CardVariations" EntitySet="CardVariations" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ManaSymbolSetManaSymbol" Association="LocalCardDataModel.Store.FK_ManaSymbolSetManaSymbol">
+            <End Role="ManaSymbolSets" EntitySet="ManaSymbolSets" />
+            <End Role="ManaSymbols" EntitySet="ManaSymbols" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ManaSymbolSetSet" Association="LocalCardDataModel.Store.FK_ManaSymbolSetSet">
+            <End Role="ManaSymbolSets" EntitySet="ManaSymbolSets" />
+            <End Role="Sets" EntitySet="Sets" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SetCardVariation" Association="LocalCardDataModel.Store.FK_SetCardVariation">
+            <End Role="Sets" EntitySet="Sets" />
+            <End Role="CardVariations" EntitySet="CardVariations" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Cards">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="bigint" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="nvarchar" MaxLength="200" />
+          <Property Name="ManaCost" Type="nvarchar" MaxLength="200" />
+          <Property Name="CardType" Type="nvarchar" MaxLength="200" />
+          <Property Name="RuleText" Type="nvarchar(max)" />
+          <Property Name="PowerVal" Type="int" />
+          <Property Name="PowerVar" Type="nvarchar" MaxLength="4" />
+          <Property Name="ToughnessVal" Type="int" />
+          <Property Name="ToughnessVar" Type="nvarchar" MaxLength="4" />
+          <Property Name="LoyaltyVal" Type="int" />
+          <Property Name="LoyaltyVar" Type="nvarchar" MaxLength="4" />
+          <Property Name="Author" Type="nvarchar" MaxLength="200" />
+        </EntityType>
+        <EntityType Name="CardVariations">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="bigint" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="CardId" Type="bigint" Nullable="false" />
+          <Property Name="SetCode" Type="nvarchar" MaxLength="10" />
+          <Property Name="FlavorText" Type="nvarchar(max)" />
+          <Property Name="Author" Type="nvarchar" MaxLength="200" />
+          <Property Name="Artist" Type="nvarchar" MaxLength="200" />
+          <Property Name="FullCardImage" Type="varbinary(max)" />
+          <Property Name="NumberOwned" Type="int" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+      warning 6002: The table/view 'C:\USERS\PERRINL\DOCUMENTS\VISUAL STUDIO 2012\PROJECTS\CARDSHARK\CARDSHARK.PCSHARK\LOCALCARDDATA.MDF.dbo.ManaSymbols' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
+      -->
+        <EntityType Name="ManaSymbols">
+          <Key>
+            <PropertyRef Name="Code" />
+          </Key>
+          <Property Name="Code" Type="nvarchar" Nullable="false" MaxLength="100" />
+          <Property Name="ManaSymbolSetId" Type="bigint" />
+          <Property Name="Image" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="ManaSymbolSets">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="bigint" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Sets">
+          <Key>
+            <PropertyRef Name="Code" />
+          </Key>
+          <Property Name="Code" Type="nvarchar" Nullable="false" MaxLength="10" />
+          <Property Name="Name" Type="nvarchar" MaxLength="200" />
+          <Property Name="Description" Type="nvarchar(max)" />
+          <Property Name="CommonSymbol" Type="varbinary(max)" />
+          <Property Name="UncommonSymbol" Type="varbinary(max)" />
+          <Property Name="RareSymbol" Type="varbinary(max)" />
+          <Property Name="MythicSymbol" Type="varbinary(max)" />
+          <Property Name="SpecialSymbol" Type="varbinary(max)" />
+          <Property Name="IsOfficial" Type="bit" Nullable="false" />
+          <Property Name="ManaSymbolSetId" Type="bigint" />
+        </EntityType>
+        <Association Name="FK_CardCardVariation">
+          <End Role="Cards" Type="LocalCardDataModel.Store.Cards" Multiplicity="1" />
+          <End Role="CardVariations" Type="LocalCardDataModel.Store.CardVariations" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Cards">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="CardVariations">
+              <PropertyRef Name="CardId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ManaSymbolSetManaSymbol">
+          <End Role="ManaSymbolSets" Type="LocalCardDataModel.Store.ManaSymbolSets" Multiplicity="0..1" />
+          <End Role="ManaSymbols" Type="LocalCardDataModel.Store.ManaSymbols" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ManaSymbolSets">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ManaSymbols">
+              <PropertyRef Name="ManaSymbolSetId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ManaSymbolSetSet">
+          <End Role="ManaSymbolSets" Type="LocalCardDataModel.Store.ManaSymbolSets" Multiplicity="0..1" />
+          <End Role="Sets" Type="LocalCardDataModel.Store.Sets" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ManaSymbolSets">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Sets">
+              <PropertyRef Name="ManaSymbolSetId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SetCardVariation">
+          <End Role="Sets" Type="LocalCardDataModel.Store.Sets" Multiplicity="0..1" />
+          <End Role="CardVariations" Type="LocalCardDataModel.Store.CardVariations" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Sets">
+              <PropertyRef Name="Code" />
+            </Principal>
+            <Dependent Role="CardVariations">
+              <PropertyRef Name="SetCode" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="LocalCardDataModel" Alias="Self" p1:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:p1="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="LocalCardDataEntities" p1:LazyLoadingEnabled="true">
+          <EntitySet Name="Cards" EntityType="LocalCardDataModel.Card" />
+          <EntitySet Name="CardVariations" EntityType="LocalCardDataModel.CardVariation" />
+          <EntitySet Name="ManaSymbols" EntityType="LocalCardDataModel.ManaSymbol" />
+          <EntitySet Name="ManaSymbolSets" EntityType="LocalCardDataModel.ManaSymbolSet" />
+          <EntitySet Name="Sets" EntityType="LocalCardDataModel.Set" />
+          <AssociationSet Name="FK_CardCardVariation" Association="LocalCardDataModel.FK_CardCardVariation">
+            <End Role="Cards" EntitySet="Cards" />
+            <End Role="CardVariations" EntitySet="CardVariations" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SetCardVariation" Association="LocalCardDataModel.FK_SetCardVariation">
+            <End Role="Sets" EntitySet="Sets" />
+            <End Role="CardVariations" EntitySet="CardVariations" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ManaSymbolSetManaSymbol" Association="LocalCardDataModel.FK_ManaSymbolSetManaSymbol">
+            <End Role="ManaSymbolSets" EntitySet="ManaSymbolSets" />
+            <End Role="ManaSymbols" EntitySet="ManaSymbols" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ManaSymbolSetSet" Association="LocalCardDataModel.FK_ManaSymbolSetSet">
+            <End Role="ManaSymbolSets" EntitySet="ManaSymbolSets" />
+            <End Role="Sets" EntitySet="Sets" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Card">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int64" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="200" Unicode="true" FixedLength="false" />
+          <Property Name="ManaCost" Type="String" MaxLength="200" Unicode="true" FixedLength="false" />
+          <Property Name="CardType" Type="String" MaxLength="200" Unicode="true" FixedLength="false" />
+          <Property Name="RuleText" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="PowerVal" Type="Int32" />
+          <Property Name="PowerVar" Type="String" MaxLength="4" Unicode="true" FixedLength="false" />
+          <Property Name="ToughnessVal" Type="Int32" />
+          <Property Name="ToughnessVar" Type="String" MaxLength="4" Unicode="true" FixedLength="false" />
+          <Property Name="LoyaltyVal" Type="Int32" />
+          <Property Name="LoyaltyVar" Type="String" MaxLength="4" Unicode="true" FixedLength="false" />
+          <Property Name="Author" Type="String" MaxLength="200" Unicode="true" FixedLength="false" />
+          <NavigationProperty Name="CardVariations" Relationship="LocalCardDataModel.FK_CardCardVariation" FromRole="Cards" ToRole="CardVariations" />
+        </EntityType>
+        <EntityType Name="CardVariation">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int64" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="CardId" Type="Int64" Nullable="false" />
+          <Property Name="SetCode" Type="String" MaxLength="10" Unicode="true" FixedLength="false" />
+          <Property Name="FlavorText" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="Author" Type="String" MaxLength="200" Unicode="true" FixedLength="false" />
+          <Property Name="Artist" Type="String" MaxLength="200" Unicode="true" FixedLength="false" />
+          <Property Name="FullCardImage" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="NumberOwned" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Card" Relationship="LocalCardDataModel.FK_CardCardVariation" FromRole="CardVariations" ToRole="Cards" />
+          <NavigationProperty Name="Set" Relationship="LocalCardDataModel.FK_SetCardVariation" FromRole="CardVariations" ToRole="Sets" />
+        </EntityType>
+        <EntityType Name="ManaSymbol">
+          <Key>
+            <PropertyRef Name="Code" />
+          </Key>
+          <Property Name="Code" Type="String" Nullable="false" MaxLength="100" Unicode="true" FixedLength="false" />
+          <Property Name="ManaSymbolSetId" Type="Int64" />
+          <Property Name="Image" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <NavigationProperty Name="ManaSymbolSet" Relationship="LocalCardDataModel.FK_ManaSymbolSetManaSymbol" FromRole="ManaSymbols" ToRole="ManaSymbolSets" />
+        </EntityType>
+        <EntityType Name="ManaSymbolSet">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int64" Nullable="false" />
+          <NavigationProperty Name="ManaSymbols" Relationship="LocalCardDataModel.FK_ManaSymbolSetManaSymbol" FromRole="ManaSymbolSets" ToRole="ManaSymbols" />
+          <NavigationProperty Name="Sets" Relationship="LocalCardDataModel.FK_ManaSymbolSetSet" FromRole="ManaSymbolSets" ToRole="Sets" />
+        </EntityType>
+        <EntityType Name="Set">
+          <Key>
+            <PropertyRef Name="Code" />
+          </Key>
+          <Property Name="Code" Type="String" Nullable="false" MaxLength="10" Unicode="true" FixedLength="false" />
+          <Property Name="Name" Type="String" MaxLength="200" Unicode="true" FixedLength="false" />
+          <Property Name="Description" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="CommonSymbol" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="UncommonSymbol" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="RareSymbol" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="MythicSymbol" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="SpecialSymbol" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="IsOfficial" Type="Boolean" Nullable="false" />
+          <Property Name="ManaSymbolSetId" Type="Int64" />
+          <NavigationProperty Name="CardVariations" Relationship="LocalCardDataModel.FK_SetCardVariation" FromRole="Sets" ToRole="CardVariations" />
+          <NavigationProperty Name="ManaSymbolSet" Relationship="LocalCardDataModel.FK_ManaSymbolSetSet" FromRole="Sets" ToRole="ManaSymbolSets" />
+        </EntityType>
+        <Association Name="FK_CardCardVariation">
+          <End Role="Cards" Type="LocalCardDataModel.Card" Multiplicity="1" />
+          <End Role="CardVariations" Type="LocalCardDataModel.CardVariation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Cards">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="CardVariations">
+              <PropertyRef Name="CardId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SetCardVariation">
+          <End Role="Sets" Type="LocalCardDataModel.Set" Multiplicity="0..1" />
+          <End Role="CardVariations" Type="LocalCardDataModel.CardVariation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Sets">
+              <PropertyRef Name="Code" />
+            </Principal>
+            <Dependent Role="CardVariations">
+              <PropertyRef Name="SetCode" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ManaSymbolSetManaSymbol">
+          <End Role="ManaSymbolSets" Type="LocalCardDataModel.ManaSymbolSet" Multiplicity="0..1" />
+          <End Role="ManaSymbols" Type="LocalCardDataModel.ManaSymbol" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ManaSymbolSets">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ManaSymbols">
+              <PropertyRef Name="ManaSymbolSetId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ManaSymbolSetSet">
+          <End Role="ManaSymbolSets" Type="LocalCardDataModel.ManaSymbolSet" Multiplicity="0..1" />
+          <End Role="Sets" Type="LocalCardDataModel.Set" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ManaSymbolSets">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Sets">
+              <PropertyRef Name="ManaSymbolSetId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="LocalCardDataModelStoreContainer" CdmEntityContainer="LocalCardDataEntities">
+          <EntitySetMapping Name="Cards">
+            <EntityTypeMapping TypeName="LocalCardDataModel.Card">
+              <MappingFragment StoreEntitySet="Cards">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="ManaCost" ColumnName="ManaCost" />
+                <ScalarProperty Name="CardType" ColumnName="CardType" />
+                <ScalarProperty Name="RuleText" ColumnName="RuleText" />
+                <ScalarProperty Name="PowerVal" ColumnName="PowerVal" />
+                <ScalarProperty Name="PowerVar" ColumnName="PowerVar" />
+                <ScalarProperty Name="ToughnessVal" ColumnName="ToughnessVal" />
+                <ScalarProperty Name="ToughnessVar" ColumnName="ToughnessVar" />
+                <ScalarProperty Name="LoyaltyVal" ColumnName="LoyaltyVal" />
+                <ScalarProperty Name="LoyaltyVar" ColumnName="LoyaltyVar" />
+                <ScalarProperty Name="Author" ColumnName="Author" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CardVariations">
+            <EntityTypeMapping TypeName="LocalCardDataModel.CardVariation">
+              <MappingFragment StoreEntitySet="CardVariations">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="CardId" ColumnName="CardId" />
+                <ScalarProperty Name="SetCode" ColumnName="SetCode" />
+                <ScalarProperty Name="FlavorText" ColumnName="FlavorText" />
+                <ScalarProperty Name="Author" ColumnName="Author" />
+                <ScalarProperty Name="Artist" ColumnName="Artist" />
+                <ScalarProperty Name="FullCardImage" ColumnName="FullCardImage" />
+                <ScalarProperty Name="NumberOwned" ColumnName="NumberOwned" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ManaSymbols">
+            <EntityTypeMapping TypeName="LocalCardDataModel.ManaSymbol">
+              <MappingFragment StoreEntitySet="ManaSymbols">
+                <ScalarProperty Name="Code" ColumnName="Code" />
+                <ScalarProperty Name="ManaSymbolSetId" ColumnName="ManaSymbolSetId" />
+                <ScalarProperty Name="Image" ColumnName="Image" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ManaSymbolSets">
+            <EntityTypeMapping TypeName="LocalCardDataModel.ManaSymbolSet">
+              <MappingFragment StoreEntitySet="ManaSymbolSets">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Sets">
+            <EntityTypeMapping TypeName="LocalCardDataModel.Set">
+              <MappingFragment StoreEntitySet="Sets">
+                <ScalarProperty Name="Code" ColumnName="Code" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="CommonSymbol" ColumnName="CommonSymbol" />
+                <ScalarProperty Name="UncommonSymbol" ColumnName="UncommonSymbol" />
+                <ScalarProperty Name="RareSymbol" ColumnName="RareSymbol" />
+                <ScalarProperty Name="MythicSymbol" ColumnName="MythicSymbol" />
+                <ScalarProperty Name="SpecialSymbol" ColumnName="SpecialSymbol" />
+                <ScalarProperty Name="IsOfficial" ColumnName="IsOfficial" />
+                <ScalarProperty Name="ManaSymbolSetId" ColumnName="ManaSymbolSetId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="True" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
